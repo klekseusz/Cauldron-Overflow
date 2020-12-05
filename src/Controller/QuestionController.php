@@ -20,9 +20,16 @@ class QuestionController extends AbstractController
      */
     public function show($slug)
     {
-        return new Response(sprintf(
-            'Tie them with your hands stupid! "%s"',
-        ucwords(str_replace('-', ' ', $slug))
-    ));
+        $answers = [
+            'Make sure your cat is sitting perfectly',
+            'I dont know what to do anymore',
+            'just dont panic, ok?',
+        ];
+
+        return $this->render('question/show.html.twig', [
+            'question' => ucwords(str_replace('-', ' ', $slug)),
+            'answers' => $answers,
+        ]);
     }
+
 }
