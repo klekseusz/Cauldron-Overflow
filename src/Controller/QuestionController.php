@@ -9,14 +9,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class QuestionController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_homepage")
      */
     public function homepage()
     {
-        return new Response('Woa first page, nice');
+        return $this->render('question/homepage.html.twig', [
+
+        ]);
     }
+
     /**
-     * @Route("/question/{slug}")
+     * @Route("/question/{slug}", name="app_question_show")
      */
     public function show($slug)
     {
@@ -25,6 +28,8 @@ class QuestionController extends AbstractController
             'I dont know what to do anymore',
             'just dont panic, ok?',
         ];
+
+        dump($this);
 
         return $this->render('question/show.html.twig', [
             'question' => ucwords(str_replace('-', ' ', $slug)),
